@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://sneyvaaj7gmp"]
+
+[ext_resource type="Script" uid="uid://dplyq11027nl4" path="res://main.gd" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://c7g852hctpjlc" path="res://player.gd" id="2_r0du0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0du0"]
+size = Vector2(3617, 411.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uu6xs"]
+
+[node name="Main" type="Node2D" unique_id=541820907 node_paths=PackedStringArray("player_bubble", "question_label", "timer_label", "emergency_overlay", "answer_buttons")]
+script = ExtResource("1_glv2v")
+player_bubble = NodePath("Player")
+question_label = NodePath("CanvasLayer/QuestionLabel")
+timer_label = NodePath("CanvasLayer/TimerLabel")
+emergency_overlay = NodePath("CanvasLayer/EmergencyOverlay")
+answer_buttons = [NodePath("CanvasLayer/ButtonContainer/Answer1"), NodePath("CanvasLayer/ButtonContainer/Answer2"), NodePath("CanvasLayer/ButtonContainer/Answer3"), NodePath("CanvasLayer/ButtonContainer/Answer4")]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=11039139]
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-100, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=793158073]
+
+[node name="Lava" type="Area2D" parent="." unique_id=622069378]
+
+[node name="LavaCollision" type="CollisionShape2D" parent="Lava" unique_id=2056796054]
+position = Vector2(3, 844)
+shape = SubResource("RectangleShape2D_r0du0")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1944776027]
+position = Vector2(576, 400)
+script = ExtResource("2_r0du0")
+
+[node name="ColorRect" type="ColorRect" parent="Player" unique_id=1203835970]
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=653429635]
+shape = SubResource("CircleShape2D_uu6xs")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1951910527]
+
+[node name="EmergencyOverlay" type="ColorRect" parent="CanvasLayer" unique_id=272662635]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="QuestionLabel" type="Label" parent="CanvasLayer" unique_id=1471099370]
+offset_left = 815.0
+offset_top = 41.0
+offset_right = 1389.0
+offset_bottom = 231.0
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer" unique_id=74484169]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ButtonContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1515524327]
+offset_left = 450.0
+offset_top = 100.0
+offset_right = 490.0
+offset_bottom = 144.0
+
+[node name="Answer1" type="Button" parent="CanvasLayer/ButtonContainer" unique_id=1380191331]
+layout_mode = 2
+
+[node name="Answer2" type="Button" parent="CanvasLayer/ButtonContainer" unique_id=408173744]
+layout_mode = 2
+
+[node name="Answer3" type="Button" parent="CanvasLayer/ButtonContainer" unique_id=1040355764]
+layout_mode = 2
+
+[node name="Answer4" type="Button" parent="CanvasLayer/ButtonContainer" unique_id=146067890]
+layout_mode = 2
+
+[connection signal="body_entered" from="Lava" to="." method="_on_lava_body_entered"]
