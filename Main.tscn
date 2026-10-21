@@ -15,6 +15,7 @@
 size = Vector2(3617, 411.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uu6xs"]
+radius = 9.408501
 
 [node name="Main" type="Node2D" unique_id=541820907 node_paths=PackedStringArray("player_bubble", "question_label", "timer_label", "emergency_overlay", "answer_buttons")]
 script = ExtResource("1_glv2v")
@@ -43,9 +44,11 @@ shape = SubResource("RectangleShape2D_r0du0")
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1944776027]
 position = Vector2(576, 400)
 script = ExtResource("2_r0du0")
+glide_amount = 50.0
 bubble_sprites = Array[Texture2D]([ExtResource("4_cm0pq"), ExtResource("5_wkp8b"), ExtResource("6_20pc6"), ExtResource("7_5vvyt"), ExtResource("8_c6i3y"), ExtResource("9_c2ibq"), ExtResource("10_wkp8b")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=653429635]
+scale = Vector2(5, 5)
 shape = SubResource("CircleShape2D_uu6xs")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=133191559]

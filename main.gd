@@ -140,6 +140,12 @@ func _on_level_complete() -> void:
 	question_label.text = "LEVEL COMPLETE!"
 	for btn in answer_buttons:
 		btn.hide()
+	
+	await get_tree().create_timer(1.0).timeout
+	var next_level = "res://level_2.tscn"
+	var error = get_tree().change_scene_to_file(next_level)
+	if error != OK:
+		print("Failed to load next level: ", error)
 
 
 func _on_lava_body_entered(body: Node2D) -> void:

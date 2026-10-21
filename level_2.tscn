@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://bkuxplxyaukq7"]
+
+[ext_resource type="Script" uid="uid://dplyq11027nl4" path="res://main.gd" id="1_15wb7"]
+[ext_resource type="Texture2D" uid="uid://daetxwh7pbyo5" path="res://Level2.png" id="2_15wb7"]
+[ext_resource type="Texture2D" uid="uid://wbsucned6y5y" path="res://Plants.png" id="3_eoq84"]
+[ext_resource type="Script" uid="uid://c7g852hctpjlc" path="res://player.gd" id="3_yl73a"]
+[ext_resource type="Texture2D" uid="uid://dcr7uyvhtcqui" path="res://Stage1.png" id="4_xbcdb"]
+[ext_resource type="Texture2D" uid="uid://butn81h3foey1" path="res://Stage2.png" id="5_s77qv"]
+[ext_resource type="Texture2D" uid="uid://cutdwv8tnigl0" path="res://Stage3.png" id="6_5hnhx"]
+[ext_resource type="Texture2D" uid="uid://bt0syswfy81mt" path="res://Stage4.png" id="7_78pok"]
+[ext_resource type="Texture2D" uid="uid://3xcij48rl1ma" path="res://Stage5.png" id="8_lvfll"]
+[ext_resource type="Texture2D" uid="uid://cwdfbia704eq6" path="res://Stage6.png" id="9_jcnlr"]
+[ext_resource type="Texture2D" uid="uid://bwne80h61x4pi" path="res://Stage7.png" id="10_5kfcu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uu6xs"]
+radius = 9.408501
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0du0"]
+size = Vector2(3617, 411.5)
+
+[node name="Level2" type="Node2D" unique_id=541820907 node_paths=PackedStringArray("player_bubble", "question_label", "timer_label", "emergency_overlay", "answer_buttons")]
+script = ExtResource("1_15wb7")
+player_bubble = NodePath("Player")
+question_label = NodePath("CanvasLayer/QuestionLabel")
+timer_label = NodePath("CanvasLayer/TimerLabel")
+emergency_overlay = NodePath("CanvasLayer/EmergencyOverlay")
+answer_buttons = [NodePath("CanvasLayer/ButtonContainer/Answer1"), NodePath("CanvasLayer/ButtonContainer/Answer2"), NodePath("CanvasLayer/ButtonContainer/Answer3"), NodePath("CanvasLayer/ButtonContainer/Answer4")]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=11039139]
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(2340.8, 0)
+autoscroll = Vector2(-100, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=793158073]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_15wb7")
+centered = false
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1944776027]
+position = Vector2(576, 400)
+script = ExtResource("3_yl73a")
+glide_amount = 50.0
+bubble_sprites = Array[Texture2D]([ExtResource("4_xbcdb"), ExtResource("5_s77qv"), ExtResource("6_5hnhx"), ExtResource("7_78pok"), ExtResource("8_lvfll"), ExtResource("9_jcnlr"), ExtResource("10_5kfcu")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=653429635]
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_uu6xs")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=133191559]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_xbcdb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1951910527]
+
+[node name="EmergencyOverlay" type="ColorRect" parent="CanvasLayer" unique_id=272662635]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="QuestionLabel" type="Label" parent="CanvasLayer" unique_id=1471099370]
+offset_left = 784.0
+offset_top = 41.0
+offset_right = 1358.0
+offset_bottom = 231.0
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer" unique_id=74484169]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ButtonContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1515524327]
+offset_left = 911.0
+offset_top = 149.0
+offset_right = 951.0
+offset_bottom = 193.0
+
+[node name="Answer1" type="Button" parent="CanvasLayer/ButtonContainer" unique_id=1380191331]
+layout_mode = 2
+
+[node name="Answer2" type="Button" parent="CanvasLayer/ButtonContainer" unique_id=408173744]
+layout_mode = 2
+
+[node name="Answer3" type="Button" parent="CanvasLayer/ButtonContainer" unique_id=1040355764]
+layout_mode = 2
+
+[node name="Answer4" type="Button" parent="CanvasLayer/ButtonContainer" unique_id=146067890]
+layout_mode = 2
+
+[node name="ParallaxPlant" type="Parallax2D" parent="." unique_id=1953134492]
+repeat_size = Vector2(2048, 0)
+autoscroll = Vector2(-100, 0)
+repeat_times = 2
+
+[node name="Plants" type="Area2D" parent="ParallaxPlant" unique_id=622069378]
+
+[node name="LavaCollision" type="CollisionShape2D" parent="ParallaxPlant/Plants" unique_id=2056796054]
+position = Vector2(191, 689)
+shape = SubResource("RectangleShape2D_r0du0")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxPlant/Plants" unique_id=1881810435]
+position = Vector2(192, 404)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_eoq84")
+
+[connection signal="body_entered" from="ParallaxPlant/Plants" to="." method="_on_lava_body_entered"]
