@@ -60,8 +60,8 @@ Open the link in a supported web browser to play the game.
 
 AI tools were used during the development of this project in the following ways:
 
-- **Image generation:** AI image-generation tools were used to create some of the game's backgrounds and visual assets.
-- **Code development:** AI assisted with writing, explaining, debugging, and improving portions of the GDScript code.
+- **Image generation:** AI image-generation tools were used to create the game's backgrounds and visual assets.
+- **Code development:** AI assisted with writing, explaining, debugging, and improving the GDScript code.
 - **Documentation:** AI was used to help write and organize this README.
 
 The project was developed through human direction, testing, and iterative changes, with AI serving as a supporting tool. This disclosure is provided for transparency.
