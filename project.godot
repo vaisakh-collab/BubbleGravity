@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Game_1"
-run/main_scene="uid://sneyvaaj7gmp"
+run/main_scene="uid://bfd3n0mcexigu"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 

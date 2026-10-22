@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bfd3n0mcexigu"]
+
+[ext_resource type="Texture2D" uid="uid://dbda2u45sqgkm" path="res://Mystical Cavern Game Intro.png" id="1_gjrx4"]
+[ext_resource type="Script" uid="uid://d0wpi11f6eo10" path="res://intro.gd" id="1_sb8jg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vltdc"]
+bg_color = Color(0.1882353, 0.14117648, 0.2784314, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.95686275, 0.78039217, 0.41960785, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_33sem"]
+bg_color = Color(0.7176471, 0.48235294, 0.21176471, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.9411765, 0.76862746, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sb8jg"]
+bg_color = Color(0.28627452, 0.21176471, 0.37254903, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.9019608, 0.6392157, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="Intro" type="Control" unique_id=570312484]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sb8jg")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=976361294]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_gjrx4")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="." unique_id=828796149]
+layout_mode = 0
+offset_left = 477.0
+offset_top = 473.0
+offset_right = 533.0
+offset_bottom = 504.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_vltdc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_33sem")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sb8jg")
+text = "START"

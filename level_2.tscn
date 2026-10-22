@@ -15,21 +15,35 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_uu6xs"]
 radius = 9.408501
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkp8b"]
+bg_color = Color(0.09411765, 0.12941177, 0.17254902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8509804, 0.6431373, 0.25490198, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eoq84"]
+bg_color = Color(0.20784314, 0.26666668, 0.3372549, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0du0"]
 size = Vector2(3617, 411.5)
 
-[node name="Level2" type="Node2D" unique_id=541820907 node_paths=PackedStringArray("player_bubble", "question_label", "timer_label", "emergency_overlay", "answer_buttons")]
+[node name="Level2" type="Node2D" unique_id=541820907 node_paths=PackedStringArray("player_bubble", "question_label", "timer_label", "answer_buttons")]
 script = ExtResource("1_15wb7")
 player_bubble = NodePath("Player")
-question_label = NodePath("CanvasLayer/QuestionLabel")
-timer_label = NodePath("CanvasLayer/TimerLabel")
-emergency_overlay = NodePath("CanvasLayer/EmergencyOverlay")
-answer_buttons = [NodePath("CanvasLayer/ButtonContainer/Answer1"), NodePath("CanvasLayer/ButtonContainer/Answer2"), NodePath("CanvasLayer/ButtonContainer/Answer3"), NodePath("CanvasLayer/ButtonContainer/Answer4")]
+question_label = NodePath("CanvasLayer/QuestionPanel/VBoxContainer/QuestionLabel")
+timer_label = NodePath("CanvasLayer/QuestionPanel/VBoxContainer/TimerLabel")
+answer_buttons = [NodePath("CanvasLayer/QuestionPanel/VBoxContainer/ButtonContainer/Answer1"), NodePath("CanvasLayer/QuestionPanel/VBoxContainer/ButtonContainer/Answer2"), NodePath("CanvasLayer/QuestionPanel/VBoxContainer/ButtonContainer/Answer3"), NodePath("CanvasLayer/QuestionPanel/VBoxContainer/ButtonContainer/Answer4")]
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=11039139]
 scroll_scale = Vector2(0.3, 0.3)
 repeat_size = Vector2(2340.8, 0)
-autoscroll = Vector2(-100, 0)
+autoscroll = Vector2(-30, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=793158073]
@@ -53,37 +67,44 @@ texture = ExtResource("4_xbcdb")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1951910527]
 
-[node name="EmergencyOverlay" type="ColorRect" parent="CanvasLayer" unique_id=272662635]
+[node name="QuestionPanel" type="PanelContainer" parent="CanvasLayer" unique_id=1492769671]
+offset_top = 318.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 431.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wkp8b")
 
-[node name="QuestionLabel" type="Label" parent="CanvasLayer" unique_id=1471099370]
-offset_left = 784.0
-offset_top = 41.0
-offset_right = 1358.0
-offset_bottom = 231.0
-
-[node name="TimerLabel" type="Label" parent="CanvasLayer" unique_id=74484169]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="ButtonContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1515524327]
-offset_left = 911.0
-offset_top = 149.0
-offset_right = 951.0
-offset_bottom = 193.0
-
-[node name="Answer1" type="Button" parent="CanvasLayer/ButtonContainer" unique_id=1380191331]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/QuestionPanel" unique_id=301690351]
 layout_mode = 2
 
-[node name="Answer2" type="Button" parent="CanvasLayer/ButtonContainer" unique_id=408173744]
+[node name="QuestionLabel" type="Label" parent="CanvasLayer/QuestionPanel/VBoxContainer" unique_id=1471099370]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer/QuestionPanel/VBoxContainer" unique_id=74484169]
 layout_mode = 2
 
-[node name="Answer3" type="Button" parent="CanvasLayer/ButtonContainer" unique_id=1040355764]
+[node name="ButtonContainer" type="VBoxContainer" parent="CanvasLayer/QuestionPanel/VBoxContainer" unique_id=1515524327]
 layout_mode = 2
 
-[node name="Answer4" type="Button" parent="CanvasLayer/ButtonContainer" unique_id=146067890]
+[node name="Answer1" type="Button" parent="CanvasLayer/QuestionPanel/VBoxContainer/ButtonContainer" unique_id=1380191331]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_eoq84")
+
+[node name="Answer2" type="Button" parent="CanvasLayer/QuestionPanel/VBoxContainer/ButtonContainer" unique_id=408173744]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_eoq84")
+
+[node name="Answer3" type="Button" parent="CanvasLayer/QuestionPanel/VBoxContainer/ButtonContainer" unique_id=1040355764]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_eoq84")
+
+[node name="Answer4" type="Button" parent="CanvasLayer/QuestionPanel/VBoxContainer/ButtonContainer" unique_id=146067890]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_eoq84")
 
 [node name="ParallaxPlant" type="Parallax2D" parent="." unique_id=1953134492]
 repeat_size = Vector2(2048, 0)
@@ -93,7 +114,7 @@ repeat_times = 2
 [node name="Plants" type="Area2D" parent="ParallaxPlant" unique_id=622069378]
 
 [node name="LavaCollision" type="CollisionShape2D" parent="ParallaxPlant/Plants" unique_id=2056796054]
-position = Vector2(191, 689)
+position = Vector2(188, 717)
 shape = SubResource("RectangleShape2D_r0du0")
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxPlant/Plants" unique_id=1881810435]
